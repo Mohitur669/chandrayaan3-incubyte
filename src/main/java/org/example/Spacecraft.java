@@ -51,12 +51,6 @@ public class Spacecraft {
         if (direction == 'N' || direction == 'S') direction = 'D';
     }
 
-    public void executeCommands(char[] commands) {
-        for (char command : commands) {
-            executeSingleCommand(command);
-        }
-    }
-
     private void executeSingleCommand(char command) {
         if (command == 'f') {
             moveForward();
@@ -79,5 +73,30 @@ public class Spacecraft {
 
     public char getDirection() {
         return direction;
+    }
+
+    // handle invalid inputs
+    private boolean isValidDirection(char direction) {
+        return direction == 'N' || direction == 'S' || direction == 'E' || direction == 'W' || direction == 'U' || direction == 'D';
+    }
+
+    public void setDirection(char direction) {
+        if (isValidDirection(direction)) {
+            this.direction = direction;
+        }
+    }
+
+    public void executeCommands(char[] commands) {
+        for (char command : commands) {
+            if (isValidCommand(command)) {
+                executeSingleCommand(command);
+            } else {
+                System.out.println("Invalid command: " + command);
+            }
+        }
+    }
+
+    private boolean isValidCommand(char command) {
+        return command == 'f' || command == 'b' || command == 'l' || command == 'r' || command == 'u' || command == 'd';
     }
 }

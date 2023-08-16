@@ -188,4 +188,12 @@ public class SpacecraftTest {
         assertEquals("(0, 0, 0)", spacecraft.getPosition());
         assertEquals('N', spacecraft.getDirection());
     }
+
+    //    resolving invalid inputs
+    @Test
+    public void testSetInvalidDirection() {
+        Spacecraft spacecraft = new Spacecraft(0, 0, 0, 'N');
+        spacecraft.setDirection('X');
+        assertEquals('N', spacecraft.getDirection());
+    }
 }
